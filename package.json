@@ -1,0 +1,37 @@
+{
+  "name": "real-estate-crawler",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KornSiwat/real-estate-crawler.git"
+  },
+  "author": "siwat ponpued",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KornSiwat/real-estate-crawler/issues"
+  },
+  "homepage": "https://github.com/KornSiwat/real-estate-crawler#readme",
+  "devDependencies": {
+    "@types/cheerio": "^0.22.18",
+    "@types/express": "^4.17.6",
+    "@types/htmlparser2": "^3.10.1",
+    "@types/node": "^13.13.4",
+    "@types/request-promise": "^4.1.46",
+    "ts-node-dev": "^1.0.0-pre.44",
+    "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "express": "^4.17.1",
+    "htmlparser2": "^4.1.0",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.5"
+  }
+}
