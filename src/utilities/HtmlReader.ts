@@ -45,7 +45,7 @@ class HtmlReader {
   }
 
   private static removeNewLine(str: HtmlString) {
-    return str.replace(/\n/g, ",")
+    return str.trim().replace(/(\n*)/gs, ",")
   }
 }
 
