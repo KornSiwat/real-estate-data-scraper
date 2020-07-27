@@ -4,7 +4,7 @@ import * as cheerio from "cheerio"
 type HtmlString = string
 
 class HtmlReader {
-  public static cheerioOption = {
+  private static cheerioOption = {
     decodeEntities: false,
   }
 
