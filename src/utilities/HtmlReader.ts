@@ -40,6 +40,16 @@ class HtmlReader {
     return HtmlReader.removeNewLine(HtmlReader.removeTag(str))
   }
 
+  public static getUrls(str: HtmlString) {
+    const result = str.match(/href="(.*?)"/)
+
+    if (result === null) {
+      return []
+    }
+
+    return result
+  }
+
   private static removeTag(str: HtmlString) {
     return str.replace(/(<)(.*?)(>)/gs, "")
   }

@@ -96,11 +96,13 @@ class RealestateDataToCsvWriter {
     return RealestateDataToCsvWriter.fileColumnNames.reduce(
       (accumulate, current) => {
         if (data[current] === undefined) {
-          const result = accumulate + "-,"
+          if (accumulate.length === 0) {
+            return accumulate + "-"
+          }
 
-          return result
+          return accumulate + ",-"
         }
-        const result = accumulate + `${data[current]},`
+        const result = accumulate + `,${data[current].replace(/,/gs, "")}`
 
         return result
       },
