@@ -1,25 +1,27 @@
 import { HtmlString, HtmlReader } from "../utilities/HtmlReader"
 import { RealestateData } from "../utilities/RealestateDataToCsvWriter"
+import { Config } from "../Config"
 
 type RealestateRawData = string[]
 type RealestateUrl = string
 
 class HomeNaYooFacade {
-  private static maxRequestCount = 300
-
   public static async getRealestateUrlsInCategory(
     baseUrl: string,
     startPage: number,
     endPage: number
   ): Promise<RealestateUrl[]> {
     let realestateUrlsInCategory: string[] = []
-    const promises = []
+    let promises = []
 
     for (let pageNumber = startPage; pageNumber <= endPage; ++pageNumber) {
       const realestateListPageUrl = `${baseUrl}${pageNumber}`
+      const isUnresolvedPromiseExceed =
+        pageNumber % Config.MaxRequest === 0
 
-      if (pageNumber % HomeNaYooFacade.maxRequestCount === 0) {
+      if (isUnresolvedPromiseExceed) {
         await Promise.all(promises)
+        promises = []
       }
 
       promises.push(

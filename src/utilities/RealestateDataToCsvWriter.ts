@@ -102,9 +102,12 @@ class RealestateDataToCsvWriter {
 
           return accumulate + ",-"
         }
-        const result = accumulate + `,${data[current].replace(/,/gs, "")}`
 
-        return result
+        if (accumulate.length === 0) {
+          return accumulate + `${data[current].replace(/,/gs, "")}`
+        }
+
+        return accumulate + `,${data[current].replace(/,/gs, "")}`
       },
       ""
     )

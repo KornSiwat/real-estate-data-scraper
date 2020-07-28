@@ -1,27 +1,31 @@
 import { HomeNaYooFacade } from "./facades/HomeNaYooFacade"
 import { RealestateDataToCsvWriter } from "./utilities/RealestateDataToCsvWriter"
+import { Config } from "./Config"
 
-const maxRequestCount = 300
+
 
 async function main() {
-  const baseCategoryPageUrl = "https://www.homenayoo.com/category/condo/%E0%B8%A3%E0%B8%B5%E0%B8%A7%E0%B8%B4%E0%B8%A7-%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B9%82%E0%B8%94/page/"
-  const filename = "./result.csv"
+  const categoryPageBaseUrl = Config.CategoryPageBaseUrl
+  const filename = Config.OutputFilename
 
   const projectUrls = await HomeNaYooFacade.getRealestateUrlsInCategory(
-    baseCategoryPageUrl,
+    categoryPageBaseUrl,
     1,
     95
   )
 
   await RealestateDataToCsvWriter.setFilename(filename)
 
-  const promises = []
+  let promises = []
 
   for (let index = 0; index <= projectUrls.length; ++index) {
     const url = projectUrls[index]
+    const isUnresolvedPromisesExceed =
+      promises.length % Config.MaxRequest === 0
 
-    if (promises.length % maxRequestCount === 0) {
+    if (isUnresolvedPromisesExceed) {
       await Promise.all(promises)
+      promises = []
     }
 
     promises.push(getRealestateDataAndWrite(url))
