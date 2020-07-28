@@ -16,8 +16,7 @@ class HomeNaYooFacade {
 
     for (let pageNumber = startPage; pageNumber <= endPage; ++pageNumber) {
       const realestateListPageUrl = `${baseUrl}${pageNumber}`
-      const isUnresolvedPromiseExceed =
-        pageNumber % Config.MaxRequest === 0
+      const isUnresolvedPromiseExceed = pageNumber % Config.MaxRequest === 0
 
       if (isUnresolvedPromiseExceed) {
         await Promise.all(promises)
@@ -77,6 +76,9 @@ class HomeNaYooFacade {
       projectHtmlString,
       "div.thaitheme_read"
     )
+      .replace(/\n/, " ")
+      .match(/(<table)(.*?)(table>)/gs)![0]
+
     const realestateProjectTableData: string[] = HtmlReader.getSelectedElements(
       projectDetailDiv,
       "tr > td"

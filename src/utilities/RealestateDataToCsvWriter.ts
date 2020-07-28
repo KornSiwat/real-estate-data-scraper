@@ -104,10 +104,10 @@ class RealestateDataToCsvWriter {
         }
 
         if (accumulate.length === 0) {
-          return accumulate + `${data[current].replace(/,/gs, "")}`
+          return accumulate + `${data[current].replace(/,/gs, "").replace(/\n/gs, " ")}`
         }
 
-        return accumulate + `,${data[current].replace(/,/gs, "")}`
+        return accumulate + `,${data[current].replace(/,/gs, "").replace(/\n/gs, " ")}`
       },
       ""
     )
