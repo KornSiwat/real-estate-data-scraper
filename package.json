@@ -1,5 +1,5 @@
 {
-  "name": "real-estate-crawler",
+  "name": "real-estate-data-scraper",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/KornSiwat/real-estate-crawler.git"
+    "url": "git+https://github.com/KornSiwat/real-estate-data-scraper.git"
   },
   "author": "siwat ponpued",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/KornSiwat/real-estate-crawler/issues"
+    "url": "https://github.com/KornSiwat/real-estate-data-scraper/issues"
   },
-  "homepage": "https://github.com/KornSiwat/real-estate-crawler#readme",
+  "homepage": "https://github.com/KornSiwat/real-estate-data-scraper#readme",
   "devDependencies": {
     "@types/cheerio": "^0.22.18",
     "@types/node": "^13.13.4",
