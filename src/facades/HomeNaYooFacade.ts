@@ -63,7 +63,9 @@ class HomeNaYooFacade {
       "div.tt_list_post"
     )
     const articles = HtmlReader.getSelectedElements(projectListDiv, "article")
-    const urls = articles.map((article) => HtmlReader.getUrls(article)[1])
+    const urls = articles
+      .map((article) => HtmlReader.getUrl(article))
+      .filter((url) => url !== "")
 
     return urls
   }
@@ -76,13 +78,11 @@ class HomeNaYooFacade {
       projectHtmlString,
       "div.thaitheme_read"
     )
-      .replace(/\n/, " ")
-      .match(/(<table)(.*?)(table>)/gs)![0]
-
+    const realestateTable = HtmlReader.getValueInTable(projectDetailDiv)
     const realestateProjectTableData: string[] = HtmlReader.getSelectedElements(
-      projectDetailDiv,
+      realestateTable,
       "tr > td"
-    ).map((htmlTableDataString) => HtmlReader.getInnerText(htmlTableDataString))
+    ).map((td) => HtmlReader.getInnerText(td))
 
     return realestateProjectTableData
   }
